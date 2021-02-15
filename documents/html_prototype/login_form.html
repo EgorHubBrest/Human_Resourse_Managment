@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<ul class="body_slides">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<!-- Оболочка для демонстрации -->
+<div class="wrapper">
+    <!-- Контент -->
+    <div class="content_login">
+        <div class="tabs_login">
+            <nav class="tabs_items">
+                <a href="#tab_01" class="tabs_item"><span>Sign In</span></a>
+                <a href="#tab_02" class="tabs_item"><span>Sign Up</span></a>
+            </nav>
+            <div class="tabs_body">
+                <div id="tab_01" class="tabs_block">
+                    <div class="content_tab_01">
+                        <div class="content_tab_01-column-top">
+                            <label class="tab_01-label" for="username">USERNAME:</label>
+                            <input type="text" id="username" class="tab_01-input-field" required
+                                   placeholder="Enter your Username">
+                            <label class="tab_01-label" for="password">PASSWORD:</label>
+                            <input type="text" id="password" class="tab_01-input-field" required
+                                   placeholder="Enter your Password">
+
+                            <div class="content_tab_01-column-top-btn" id="button-top">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span>YES</span>
+                                </div>
+                                <div class="layer"></div>
+
+                            </div>
+                            <div class="content_tab_01-column-top-text"><span>STAY LOGGED IN</span></div>
+                            <div class="content_tab_01-column-top-sign-btn">
+                                <span class="mas">SIGN IN</span>
+                                <button id='work' type="button" name="Hover">SIGN IN</button>
+                            </div>
+                        </div>
+                        <div class="content_tab_01-column-top-column-footer">
+                            <a href="reset_password.html" class="forgot_password">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab_02" class="tabs_block">
+                    <div class="content_tab_02">
+                        <div class="content_tab_02-column">
+                        <label class="tab_02-label" for="fullname">FULL NAME:</label>
+                        <input type="text" id="fullname" class="tab_02-input-field" required
+                               placeholder="Enter your FULL NAME">
+                        <label class="tab_02-label" for="email">EMAIL:</label>
+                        <input type="text" id="email" class="tab_02-input-field" required
+                               placeholder="Enter your EMAIL">
+
+                        <label class="tab_02-label" for="passwordf">PASSWORD:</label>
+                        <input type="text" id="passwordf" class="tab_02-input-field" required
+                               placeholder="Enter your PASSWORD">
+                        <label class="tab_02-label" for="passwords">CONFIRM PASSWORD:</label>
+                        <input type="text" id="passwords" class="tab_02-input-field" required
+                               placeholder="Enter your CONFIRM PASSWORD">
+                            <div class="content_tab_01-column-top-sign-btn">
+                                <span class="mas">SIGN UP</span>
+                                <button id='work_two' type="button" name="Hover">SIGN UP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+</html>
