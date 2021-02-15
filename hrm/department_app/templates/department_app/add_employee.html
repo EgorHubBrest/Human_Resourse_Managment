@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Human Resource Management</title>
+    <link rel="stylesheet" href="main.css">
+
+
+</head>
+<body style="background-image: url(picture/back.png);">
+
+<div class="container">
+    <header class="header">
+        <a href="main.html" class="header_logo">
+            <img src="man.svg" alt="logo">
+            <span class="header_logo-text">
+                Human Resource Management
+            </span>
+        </a>
+        <div class="header_right">
+            <div class="header_right_icon">
+                <a href="login_form.html" class="header_right_icon-link">Log out</a>
+            </div>
+            <div class="header_right_icon">
+                <a href="#" class="header_right_icon-link">Help</a>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="container">
+    <div class="main_content">
+        <div class="accord">
+            <div class="accord-item">
+                <input class="accord-input" type="checkbox" id="accord_1" disabled>
+                <label class="accord-title" for="accord_1"><a href="main.html">Dashboard</a></label>
+            </div>
+            <div class="accord-item">
+                <input class="accord-input" type="checkbox" id="accord_2">
+                <label class="accord-title" for="accord_2">Department</label>
+                <div class="accord-text">
+                    <ul class="ul-accord-text">
+                        <li class="ul-accord-text-li">
+                            <a class="ul-accord-text-li-link" href="add_department.html">Add Department</a>
+                        </li>
+                        <li class="ul-accord-text-li">
+                            <a class="ul-accord-text-li-link" href="manage_department.html">Manage Departments</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accord-item">
+                <input class="accord-input" type="checkbox" id="accord_3">
+                <label class="accord-title" for="accord_3">Employees</label>
+                <div class="accord-text">
+                    <ul class="ul-accord-text">
+                        <li class="ul-accord-text-li">
+                            <a class="ul-accord-text-li-link">Add Employee</a>
+                        </li>
+                        <li class="ul-accord-text-li">
+                            <a class="ul-accord-text-li-link" href="employees_list.html">Manage Employee</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <main class="content">
+            <div class="container_sub">
+                <div class="employee_add-main">
+                    <div class="employee_add-main-left">
+                        <div class="employee_add-main-column">
+                            <div class="employee_add-main-column-top">Personal Details</div>
+                            <div class="employee_add-main-column-footer">
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="fname">* First Name:</label>
+                                    <input type="text" id="fname" class="employee-input-field" required
+                                           placeholder="Enter your First Name">
+                                </div>
+
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="lname">* Last Name:</label>
+                                    <input type="text" id="lname" class="employee-input-field" required
+                                           placeholder="Enter your Last Name">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="birthday">* Date of birthday:</label>
+                                    <input type="date" id="birthday" class="employee-input-field">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label>* Gender:</label>
+                                    <select class="employee-input-field">
+                                        <option value="0">Select Gender:</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Agender</option>
+                                    </select>
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="passport">* Passport №:</label>
+                                    <input type="text" id="passport" class="employee-input-field" required
+                                           placeholder="Enter your Passport №">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="employee_add-main-column">
+                            <div class="employee_add-main-column-top">Contact Details</div>
+                            <div class="employee_add-main-column-footer">
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="adress">* Present Address:</label>
+                                    <input type="text" id="adress" class="employee-input-field" required
+                                           placeholder="Enter your Present Address">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="city">* City:</label>
+                                    <input type="text" id="city" class="employee-input-field" required
+                                           placeholder="Enter your City">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="country">* Country:</label>
+                                    <input type="text" id="country" class="employee-input-field" required
+                                           placeholder="Enter your Country">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="ph1">* Phone 1:</label>
+                                    <input type="number" id="ph1" class="employee-input-field" required
+                                           placeholder="Enter your Phone">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="ph2">Phone 2:</label>
+                                    <input type="number" id="ph2" class="employee-input-field" required
+                                           placeholder="Enter your Phone">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="employee_add-main-right">
+                        <div class="employee_add-main-column">
+                            <div class="employee_add-main-column-top">Account Login</div>
+                            <div class="employee_add-main-column-footer">
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="email">* Email:</label>
+                                    <input type="email" id="email" class="employee-input-field" required
+                                           placeholder="Enter your email">
+                                </div>
+
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="password">* Password:</label>
+                                    <input type="text" id="password" class="employee-input-field" required
+                                           placeholder="Enter your password">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="employee_add-main-column">
+                            <div class="employee_add-main-column-top">Company Details</div>
+                            <div class="employee_add-main-column-footer">
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="em_id">* Employee ID:</label>
+                                    <input type="number" id="em_id" class="employee-input-field" required
+                                           placeholder="Enter your Employee ID">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="department">* Department:</label>
+                                    <input type="text" id="department" class="employee-input-field" required
+                                           placeholder="Enter your Department">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="salary">* Salary:</label>
+                                    <input type="number" id="salary" class="employee-input-field" required
+                                           placeholder="Enter your Salary">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="datej">* Date of Joining:</label>
+                                    <input type="date" id="datej" class="employee-input-field" required
+                                           placeholder="Enter your Date of Joining">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="datel">* Date of Living:</label>
+                                    <input type="date" id="datel" class="employee-input-field" required
+                                           placeholder="Enter your Date of Living">
+                                </div>
+                                <div class="employee_add-main-column-footer-row">
+                                    <label for="status">* Status:</label>
+                                    <input type="text" id="status" class="employee-input-field" required
+                                           placeholder="Enter your password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-footer">
+                    <button class="employee-footer-btn" data-clear-selector="input.employee-input-field">Save</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
