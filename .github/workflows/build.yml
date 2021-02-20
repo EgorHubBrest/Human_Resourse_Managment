@@ -1,9 +1,9 @@
-name: pylint
+name: build
 
 on:
   push:
     branches: 
-      - developer
+      - dev
   pull_request:
 
 jobs:
