@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 
 import os
 
-from django.core.asgi import get_asgi_application
+from django.core.asgi import get_asgi_application  # pylint: disable=E0611 disable=E0401
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hrm.settings')
 
