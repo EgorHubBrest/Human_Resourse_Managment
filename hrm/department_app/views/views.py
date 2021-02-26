@@ -1,4 +1,4 @@
 """Django views"""
-from django.shortcuts import render # pylint: disable=W0611
+from django.shortcuts import render 
 
 # Create your views here.
