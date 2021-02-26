@@ -15,7 +15,8 @@ mange.py,
 asgi.py,
 wsgi.py,
 admin.py,
-apps.py
+apps.py,
+test.py
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
