@@ -11,12 +11,12 @@ fail-under=10.0
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
 ignore=CVS,
-mange.py,
-asgi.py,
-wsgi.py,
-admin.py,
-apps.py,
-test.py
+      mange.py,
+      asgi.py,
+      wsgi.py,
+      admin.py,
+      apps.py,
+      test.py
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
