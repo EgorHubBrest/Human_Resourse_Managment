@@ -1,0 +1,3 @@
+repo_token: fKCvaXnJ57PcG1x0cqsHtNRkEiq3Suhp0
+service_name: github_actions
+parallel: true # if the CI is running your build in parallel
