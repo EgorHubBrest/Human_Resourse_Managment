@@ -37,7 +37,7 @@ jobs:
           node-version: 10.x
 
       - name: npm install, make test-coverage
-        run: /
+        run: 
           npm install
           make test-coverage
 
