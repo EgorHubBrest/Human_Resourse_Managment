@@ -1,6 +1,9 @@
 """Django apps"""
 from django.apps import AppConfig
 
-# pylint: disable=C0115
+
 class DepartmentAppConfig(AppConfig):
+      """
+    Department-app configuration
+    """
     name = 'department_app'
