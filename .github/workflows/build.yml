@@ -1,4 +1,4 @@
-name: pylint_test
+name: build
 
 on:
   push:
@@ -27,3 +27,12 @@ jobs:
       - name: Run pylint check
         run:
           pylint hrm/*
+          
+      - name: Install dependencies for Coveralls       
+        run:
+          pip install coveralls
+      - name: Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: coveralls --service=github
+  
