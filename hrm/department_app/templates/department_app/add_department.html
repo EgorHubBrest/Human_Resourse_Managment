@@ -1,0 +1,23 @@
+{% extends 'department_app/base.html'%}
+{% load static %}
+{% block content %}
+<main class="content">
+    <div class="container_sub">
+        <div class="department_form">
+            <h2 class="department_form-h2">New Department</h2>
+            <div class="department_form_group">
+                <div class="department_form_group__container">
+                    <div class="department_form_line">
+                        <label for="depart_id" class="department_form_line-label">Department</label>
+                        <input type="text" class="department_form_line-input" id="depart_id"></div>
+                    <div class="department_form_line">
+                        <label for="design_id" class="department_form_line-label">Total Employees</label>
+                        <input type="text" class="department_form_line-input" id="design_id">
+                    </div>
+                </div>
+            </div>
+            <button class="department_form-btn">Save</button>
+        </div>
+    </div>
+</main>
+{% endblock %}

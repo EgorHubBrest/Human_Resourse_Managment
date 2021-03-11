@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Human Resource Management</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
 <body style="background-image: url(picture/back.png);">
 
@@ -201,7 +202,7 @@
     </div>
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script  src="input_script.js"></script>
+<script  src="{% static 'input_script.js'%"></script>
 </body>
 
 </html>
