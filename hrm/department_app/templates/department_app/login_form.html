@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
 <body>
 <ul class="body_slides">
@@ -44,7 +45,7 @@
                             </div>
                         </div>
                         <div class="content_tab_01-column-top-column-footer">
-                            <a href="reset_password.html" class="forgot_password">Forgot Password?</a>
+                            <a href="{% url 'reset_pass' %}" class="forgot_password">Forgot Password?</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
         </div>
     </div>
 </div>
-<script src="jquery-3.4.1.min.js"></script>
+<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
 <script>
     $(".tabs_block").not(":first").hide();
     $(".tabs_item").click(function() {

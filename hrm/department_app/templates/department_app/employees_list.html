@@ -1,0 +1,72 @@
+{% extends 'department_app/base.html'%}
+{% load static %}
+{% block content %}
+<main class="content">
+    <div class="container_sub">
+        <div class="department_table">
+            <div class="header_part">
+                <div class="header_part_ground">
+                    <h1>Employees List</h1>
+                    <button class="header_part-btn"><a href="{% url 'employee'%}">+NEW</a></button>
+                </div>
+            </div>
+            <div class="middle_part">
+                <div class="middle_part-left">
+                    <span class="middle_part-left-label">Show</span>
+                    <input type="number" value="0">
+                    <span class="middle_part-left-label">entries</span>
+                </div>
+                <div class="middle_part-right">
+                    <input type="text" class="middle_part-right-input">
+                </div>
+            </div>
+            <div class="table_part">
+                <table class="table_part-tb">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <th>Date of birthrday</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    {% for el in employee %}
+                    <tr>
+                        <td>{{ el.Id }}</td>
+                        <td>{{ el.name }}</td>
+                        <td>{{ el.department }}</td>
+                        <td>{{ el.salary }}</td>
+                        <td>{{ el.date }}</td>
+                        <td>{{ el.email }}</td>
+                        <td>{{ el.status }}</td>
+                        <td>Active</td>
+                        <td class="table_part-td-action"><a href="">Изменить</a> | <a href="">Удалить</a>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div class="footer_part">
+                <div class="footer_part-label">
+                    <span class="footer_part-span">Showing of <span class="first">0</span> of <span class="second">2</span> entries</span>
+                </div>
+                <div class="footer_part-pagination">
+                    <a href="#">«</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">»</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

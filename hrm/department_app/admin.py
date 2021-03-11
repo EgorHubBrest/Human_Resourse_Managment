@@ -1,4 +1,7 @@
 """Django Admin"""
 from django.contrib import admin 
+from department_app.models import department,employees
 
-# Register your models here.
+
+admin.site.register(department.Department)
+admin.site.register(employees.Employees)
