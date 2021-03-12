@@ -1,7 +1,6 @@
 """Django views"""
 from django.shortcuts import render
 
-
 from department_app.models import department,employees
 
 
