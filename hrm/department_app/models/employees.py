@@ -1,6 +1,6 @@
 """Django models"""
 from django.db import models
-from djmoney.models.fields import MoneyField 
+from djmoney.models.fields import MoneyField
 
 
 class Employees(models.Model):
