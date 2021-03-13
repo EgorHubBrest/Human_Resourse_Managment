@@ -23,12 +23,12 @@ jobs:
         run:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pylint_django
           pip install pylint
+          pip install pylint_django
           pip install django-money
       - name: Run pylint check
         run:
-          pylint hrm/*
+          pylint --load-plugins pylint_django hrm/*
           
       - name: Install dependencies for Coveralls       
         run:
