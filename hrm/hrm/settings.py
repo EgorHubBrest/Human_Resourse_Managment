@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_project',
         'USER': 'django_user',
         'PASSWORD': 'qwerty',
