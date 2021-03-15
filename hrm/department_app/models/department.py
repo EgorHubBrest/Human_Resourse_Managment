@@ -1,6 +1,6 @@
 """Django models"""
 from django.db import models
-from djmoney.models.fields import MoneyField # pylint: disable=E0401
+from djmoney.models.fields import MoneyField
 
 
 class Department(models.Model):
@@ -11,4 +11,4 @@ class Department(models.Model):
 
 
     def __str__(self):
-        return str(self.department)
+        return self.department
