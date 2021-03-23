@@ -9,7 +9,7 @@ class Department(models.Model):
     Active= "Active"
 
     Inactive = "Inactive"
-    
+
     STATUS_CHOICES = (
         (Inactive, "Inactive"),
         (Active, "Active"),
@@ -22,8 +22,7 @@ class Department(models.Model):
     def __str__(self):
         return f'Department with name {self.name}'
 
-    
+
     class Meta:
         verbose_name = "Департамент"
         verbose_name_plural = "Департаменты"
-

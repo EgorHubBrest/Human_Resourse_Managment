@@ -18,7 +18,7 @@ class Employee(models.Model):
     Active= "Active"
 
     Inactive = "Inactive"
-    
+
     STATUS_CHOICES = (
         (Inactive, "Inactive"),
         (Inactive, "Inactive"),
@@ -35,4 +35,3 @@ class Employee(models.Model):
     class Meta:
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"
-
