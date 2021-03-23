@@ -28,10 +28,12 @@ class Employee(models.Model):
                   choices=STATUS_CHOICES,
                   default="Inactive")
 
+
     def __str__(self):
         return f'Employee with name {self.name} belongs to the department {self.department}'
 
 
     class Meta:
+        """Сотрудники"""
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"

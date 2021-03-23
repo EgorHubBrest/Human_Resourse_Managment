@@ -24,5 +24,6 @@ class Department(models.Model):
 
 
     class Meta:
+        """Департамент"""
         verbose_name = "Департамент"
         verbose_name_plural = "Департаменты"
