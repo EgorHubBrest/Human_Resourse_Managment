@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wv&&3b@(0$)-(_@ypc*m6t=^c3ndq*hrghy^puj)iwp9wi2ju%'
+SECRET_KEY = 'x3&mgqt%^3h!c=8n71jhf5y@y2t^(p&4e4@z&=vdp@e9+pz+f('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'djmoney',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'department_app',
+    'djmoney',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_project',
-        'USER': 'django_user',
+  'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_departmnet',
+        'USER': 'user_django',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Minsk'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

@@ -1,2 +1,2 @@
-"""Django views"""
-#from django.shortcuts import render
+"""Views"""
+# from django.shortcuts import render
