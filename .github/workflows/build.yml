@@ -28,7 +28,7 @@ jobs:
           pip install djangorestframework
       - name: Run pylint check
         run:
-          pylint hrm/*
+          pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
           
       - name: Install dependencies for Coveralls       
         run:
