@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wv&&3b@(0$)-(_@ypc*m6t=^c3ndq*hrghy^puj)iwp9wi2ju%'
+SECRET_KEY = 'x3&mgqt%^3h!c=8n71jhf5y@y2t^(p&4e4@z&=vdp@e9+pz+f('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'department_app',
+    'djmoney',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -74,9 +77,13 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+  'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_departmnet',
+        'USER': 'user_django',
+        'PASSWORD': 'qwerty',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
