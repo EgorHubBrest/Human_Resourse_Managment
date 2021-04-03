@@ -25,6 +25,7 @@ jobs:
           pip install -r requirements.txt
           pip install pylint-django
           pip install pylint
+          pip install djangorestframework
       - name: Run pylint check
         run:
           pylint hrm/*
