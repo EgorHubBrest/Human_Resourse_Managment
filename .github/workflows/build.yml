@@ -27,7 +27,7 @@ jobs:
           pip install pylint
       - name: Run pylint check
         run:
-          pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
+          pylint hrm/*
           
       - name: Install dependencies for Coveralls       
         run:
