@@ -28,7 +28,7 @@ class Employee(models.Model):
 
     STATUS_CHOICES = (
         (Inactive, "Inactive"),
-        (Inactive, "Inactive"),
+        (Inactive, "Active"),
     )
 
     status = models.CharField(max_length=8,
