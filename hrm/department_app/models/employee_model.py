@@ -3,8 +3,6 @@ from django.db import models
 from department_app.models import department_models
 from djmoney.models.fields import MoneyField
 
-department_models.Department.STATUS_CHOICES
-
 
 class Employee(models.Model):
     """Employees"""
