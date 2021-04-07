@@ -20,8 +20,8 @@ class Department(models.Model):
     )
 
     status_departmnet = models.CharField(max_length=8,
-                              choices=STATUS_CHOICES,
-                              default="Inactive")
+                                         choices=STATUS_CHOICES,
+                                         default="Inactive")
 
     def __str__(self):
         return f'Department with name {self.name}'
