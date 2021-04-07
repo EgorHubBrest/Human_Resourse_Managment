@@ -31,7 +31,7 @@ class Employee(models.Model):
         (Active, "Active"),
     )
 
-    status = models.CharField(max_length=8,
+    status_employee = models.CharField(max_length=8,
                               choices=STATUS_CHOICES,
                               default="Inactive")
 
