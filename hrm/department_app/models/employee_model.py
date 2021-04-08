@@ -1,8 +1,8 @@
 """Django models"""
 from django.db import models
+from department_app.utils import STATUS_CHOICES, INACTIVE
 from department_app.models import department_models
 from djmoney.models.fields import MoneyField
-from department_app.utils import STATUS_CHOICES, INACTIVE
 
 
 class Employee(models.Model):
