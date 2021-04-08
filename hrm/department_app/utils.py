@@ -1,9 +1,9 @@
 """Some Commands"""
-Active = "Active"
+ACTIVE = "Active"
 
-Inactive = "Inactive"
+INACTIVE = "Inactive"
 
 STATUS_CHOICES = (
-    (Inactive, "Inactive"),
-    (Active, "Active"),
+    (INACTIVE, "Inactive"),
+    (ACTIVE, "Active"),
 )
