@@ -1,5 +1,6 @@
 """Django models"""
 from django.db import models
+from department_app.utils import STATUS_CHOICES, Inactive
 
 
 class Department(models.Model):
@@ -10,18 +11,9 @@ class Department(models.Model):
     name = models.CharField('Department', max_length=50,
                             null=False, default='Name department')
 
-    Active = "Active"
-
-    Inactive = "Inactive"
-
-    STATUS_CHOICES = (
-        (Inactive, "Inactive"),
-        (Active, "Active"),
-    )
-
-    status_departmnet = models.CharField(max_length=8,
-                                         choices=STATUS_CHOICES,
-                                         default="Inactive")
+    status = models.CharField(max_length=8,
+                              choices=STATUS_CHOICES,
+                              default=Inactive)
 
     def __str__(self):
         return f'Department with name {self.name}'

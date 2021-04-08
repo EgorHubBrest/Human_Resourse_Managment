@@ -2,6 +2,7 @@
 from django.db import models
 from department_app.models import department_models
 from djmoney.models.fields import MoneyField
+from department_app.utils import STATUS_CHOICES, Inactive
 
 
 class Employee(models.Model):
@@ -22,9 +23,9 @@ class Employee(models.Model):
 
     email = models.EmailField('Email', default='')
 
-    status_employee = models.CharField(max_length=8,
-                                       choices=department_models.Department.STATUS_CHOICES,
-                                       default="Inactive")
+    status = models.CharField(max_length=8,
+                              choices=STATUS_CHOICES,
+                              default=Inactive)
 
     def __str__(self):
         return f'Employee with name {self.name} belongs to the department {self.department}'

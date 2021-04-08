@@ -9,9 +9,9 @@ def forward_func(apps, schema_editor):
     Employee = apps.get_model('department_app', 'Employee')
 
     Department.objects.bulk_create([
-        Department(name='Executive Office', status_departmnet='Active'),
-        Department(name='The Secretariat', status_departmnet='Active'),
-        Department(name='Accounting', status_departmnet='Active'),
+        Department(name='Executive Office', status='Active'),
+        Department(name='The Secretariat', status='Active'),
+        Department(name='Accounting', status='Active'),
     ])
 
     dep_exe = Department.objects.get(name='Executive Office')
@@ -20,11 +20,11 @@ def forward_func(apps, schema_editor):
 
     Employee.objects.bulk_create([
         Employee(name='Maria Nankov', department=dep_exe, date='1986-11-01',
-                 salary=Money(1500, 'USD'), email='maria@gmail.com', status_employee='Active'),
+                 salary=Money(1500, 'USD'), email='maria@gmail.com', status='Active'),
         Employee(name='Edward Bill', department=dep_sec, date='1966-12-21',
-                 salary=Money(1100, 'USD'), email='Edward@gmail.com', status_employee='Active'),
+                 salary=Money(1100, 'USD'), email='Edward@gmail.com', status='Active'),
         Employee(name='Pavel Volya', department=dep_acc, date='1985-02-27',
-                 salary=Money(2100, 'USD'), email='pavel@gmail.com', status_employee='Active'),
+                 salary=Money(2100, 'USD'), email='pavel@gmail.com', status='Active'),
     ])
 
 
