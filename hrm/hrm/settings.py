@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'department_app',
     'djmoney',
     'rest_framework',
+    'department_app',
+
 ]
 
 MIDDLEWARE = [
@@ -51,8 +52,34 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+LOGGING = {
+'version': 1,
+'disable_existing_loggers': False,
+'handlers': {
+    'file': {
+        'level': 'DEBUG',
+        'class': 'logging.FileHandler',
+        'filename': os.path.join(BASE_DIR,'department_app.log'),
+    },
+},
+'loggers': {
+    'django': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
+},
+}
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+AUTH_USER_MODEL = 'department_app.User'
+
+
 
 ROOT_URLCONF = 'hrm.urls'
+
 
 TEMPLATES = [
     {
@@ -79,8 +106,8 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_departmnet',
-        'USER': 'user_django',
+        'NAME': 'egor_database',
+        'USER': 'egor_django',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -112,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
@@ -125,3 +152,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'hrm.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'department_app.backends.JWTAuthentication',
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}

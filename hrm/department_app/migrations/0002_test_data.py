@@ -7,6 +7,7 @@ from djmoney.money import Money
 def forward_func(apps, schema_editor):
     Department = apps.get_model('department_app', 'Department')
     Employee = apps.get_model('department_app', 'Employee')
+    User = apps.get_model('department_app', 'User')
 
     Department.objects.bulk_create([
         Department(name='Executive Office', status='Active'),
@@ -27,13 +28,21 @@ def forward_func(apps, schema_editor):
                  salary=Money(2100, 'USD'), email='pavel@gmail.com', status='Active'),
     ])
 
+    User.objects.bulk_create([
+        User(email='pavel@gmail.com', username='Pavel_Volya', password='453t42871Gr'),
+        User(email='Edward@gmail.com', username='Edward_Bill', password='653t442jwtb'),
+        User(email='maria@gmail.com', username='Maria_Nankov', password='9553kd3t428714r'),
+    ])
+
 
 def backward_func(apps, schema_editor):
     Department = apps.get_model('department_app', 'Department')
     Employee = apps.get_model('department_app', 'Employee')
+    User = apps.get_model('department_app', 'User')
 
     Employee.objects.all().delete()
     Department.objects.all().delete()
+    User.objects.all().delete()
 
 
 class Migration(migrations.Migration):
