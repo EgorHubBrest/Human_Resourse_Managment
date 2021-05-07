@@ -53,29 +53,28 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 LOGGING = {
-'version': 1,
-'disable_existing_loggers': False,
-'handlers': {
-    'file': {
-        'level': 'DEBUG',
-        'class': 'logging.FileHandler',
-        'filename': os.path.join(BASE_DIR,'department_app.log'),
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'department_app.log'),
+        },
     },
-},
-'loggers': {
-    'django': {
-        'handlers': ['file'],
-        'level': 'DEBUG',
-        'propagate': True,
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
-},
 }
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
 AUTH_USER_MODEL = 'department_app.User'
-
 
 
 ROOT_URLCONF = 'hrm.urls'
@@ -104,7 +103,7 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-  'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'egor_database',
         'USER': 'egor_django',
@@ -153,10 +152,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'hrm.exceptions.core_exception_handler',
-    'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'department_app.backends.JWTAuthentication',
     ),

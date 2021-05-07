@@ -8,9 +8,14 @@ from department_app.models.users_models import User
 
 
 class JWTAuthentication(authentication.BaseAuthentication):
+    """A plan for deciding whether a user is authenticated"""
     authentication_header_prefix = 'Token'
 
     def authenticate(self, request):
+        """
+        The authenticate method is called every time, 
+        regardless of whether the endpoint requires authentication.
+        """
         request.user = None
         auth_header = authentication.get_authorization_header(request).split()
         auth_header_prefix = self.authentication_header_prefix.lower()
@@ -24,18 +29,19 @@ class JWTAuthentication(authentication.BaseAuthentication):
         elif len(auth_header) > 2:
             return None
 
-
         prefix = auth_header[0].decode('utf-8')
         token = auth_header[1].decode('utf-8')
 
         if prefix.lower() != auth_header_prefix:
             return None
 
-
         return self._authenticate_credentials(request, token)
 
     def _authenticate_credentials(self, request, token):
-
+        """
+        attempt to authenticate with the provided data.
+        If successful return the user and the token, otherwise generate an exception.
+        """
         try:
             payload = jwt.decode(token, settings.SECRET_KEY)
         except Exception:

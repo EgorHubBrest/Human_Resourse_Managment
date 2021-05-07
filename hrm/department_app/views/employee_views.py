@@ -10,7 +10,7 @@ class EmployeetViewSet(viewsets.ViewSet):
 
     def list(self, request):
         employees = Employee.objects.all()
-        serializer = EmployeeSerializer(employees, many = True)
+        serializer = EmployeeSerializer(employees, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -25,17 +25,16 @@ class EmployeetViewSet(viewsets.ViewSet):
         employee = get_object_or_404(queryset, pk=pk)
         serializer = EmployeeSerializer(employee)
         return Response(serializer.data)
-    
-    def update(self,request,pk=None):
+
+    def update(self, request, pk=None):
         employee = Employee.objects.get(pk=pk)
-        serializer = EmployeeSerializer(employee,data=request.data)
+        serializer = EmployeeSerializer(employee, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    def destroy(self, request, pk =None):
+
+    def destroy(self, request, pk=None):
         employee = Employee.objects.get(pk=pk)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-

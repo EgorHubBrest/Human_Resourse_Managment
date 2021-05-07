@@ -29,9 +29,12 @@ def forward_func(apps, schema_editor):
     ])
 
     User.objects.bulk_create([
-        User(email='pavel@gmail.com', username='Pavel_Volya', password='453t42871Gr'),
-        User(email='Edward@gmail.com', username='Edward_Bill', password='653t442jwtb'),
-        User(email='maria@gmail.com', username='Maria_Nankov', password='9553kd3t428714r'),
+        User(email='pavel@gmail.com',
+             username='Pavel_Volya', password='453t42871Gr'),
+        User(email='Edward@gmail.com',
+             username='Edward_Bill', password='653t442jwtb'),
+        User(email='maria@gmail.com', username='Maria_Nankov',
+             password='9553kd3t428714r'),
     ])
 
 

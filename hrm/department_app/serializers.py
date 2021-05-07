@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from department_app.models import employee_model,department_models
+from department_app.models import employee_model, department_models
 from department_app.models.users_models import User
 from django.contrib.auth import authenticate
+
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,6 +64,7 @@ class LoginSerializer(serializers.Serializer):
             'username': user.username,
             'token': user.token
         }
+
 
 class UserSerializer(serializers.ModelSerializer):
     """ Performs serialization and deserialization of User objects. """

@@ -4,20 +4,22 @@ from department_app.models.department_models import Department
 from department_app.models.users_models import User
 from djmoney.money import Money
 import json
+
+
 class ModelsTests(APITestCase):
     def test_model_department(self):
         dep_1 = Department.objects.create(name='Test Office', status='Active')
         dep_2 = Department.objects.create(name='Test2 Office', status='Active')
-        expected_data =[
+        expected_data = [
             {
-                'id':dep_1.id,
-                'name':'Test Office',
-                'status':'Active'
+                'id': dep_1.id,
+                'name': 'Test Office',
+                'status': 'Active'
             },
             {
-                'id':dep_2.id,
-                'name':'Test2 Office',
-                'status':'Active' 
+                'id': dep_2.id,
+                'name': 'Test2 Office',
+                'status': 'Active'
             }
         ]
         self.assertEqual(expected_data[0]['id'], dep_1.id)
@@ -31,13 +33,13 @@ class ModelsTests(APITestCase):
     def test_model_employee(self):
         dep_exe = Department.objects.get(name='Executive Office')
         empl_1 = Employee.objects.create(name='Test Name', department=dep_exe, date='1986-11-01',
-        salary=Money(1400, 'USD'), email='test@gmail.com', status='Active')
+                                         salary=Money(1400, 'USD'), email='test@gmail.com', status='Active')
         empl_2 = Employee.objects.create(name='Test Name2', department=dep_exe, date='1986-11-01',
-        salary=Money(1500, 'USD'), email='test2@gmail.com', status='Active')
-        expected_data =[
+                                         salary=Money(1500, 'USD'), email='test2@gmail.com', status='Active')
+        expected_data = [
             {
                 "id": empl_1.id,
-                "name":"Test Name",
+                "name": "Test Name",
                 "date": "1986-11-01",
                 "salary_currency": "USD",
                 "salary": "1400.00",
@@ -67,22 +69,24 @@ class ModelsTests(APITestCase):
         self.assertEqual(expected_data[1]['email'], empl_2.email)
 
     def test_model_user(self):
-        us_1 = User(email='pavel1@gmail.com', username='Pavel1_Volya', password='453t42871Gr')
-        us_2 = User(email='pavel2@gmail.com', username='Pavel2_Volya', password='45th3t42871Gr')
-        expected_data =[
+        us_1 = User(email='pavel1@gmail.com',
+                    username='Pavel1_Volya', password='453t42871Gr')
+        us_2 = User(email='pavel2@gmail.com',
+                    username='Pavel2_Volya', password='45th3t42871Gr')
+        expected_data = [
             {
                 "id": us_1.id,
-                "email":"pavel1@gmail.com",
+                "email": "pavel1@gmail.com",
                 "username": "Pavel1_Volya",
                 "password": "453t42871Gr",
             },
             {
                 "id": us_2.id,
-                "email":"pavel2@gmail.com",
+                "email": "pavel2@gmail.com",
                 "username": "Pavel2_Volya",
                 "password": "45th3t42871Gr",
             }
-        ]    
+        ]
 
         self.assertEqual(expected_data[0]['id'], us_1.id)
         self.assertEqual(expected_data[0]['email'], us_1.email)
