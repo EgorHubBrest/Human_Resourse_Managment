@@ -1,3 +1,4 @@
+"""URLS"""
 from django.urls import path, include
 from department_app.views.department_views import DepartmentViewSet
 from department_app.views.employee_views import EmployeetViewSet

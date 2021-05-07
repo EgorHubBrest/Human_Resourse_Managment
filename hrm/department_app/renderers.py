@@ -1,3 +1,4 @@
+"""Render"""
 import json
 
 from rest_framework.renderers import JSONRenderer
@@ -9,8 +10,8 @@ class UserJSONRenderer(JSONRenderer):
 
     def render(self, data, media_type=None, renderer_context=None):
         """
-        If we get the token key as part of the response, 
-        it will be a byte object. Byte objects are poorly serialized, 
+        If we get the token key as part of the response,
+        it will be a byte object. Byte objects are poorly serialized ,
         so we need to decode them before rendering the User object.
         """
         errors = data.get('errors', None)

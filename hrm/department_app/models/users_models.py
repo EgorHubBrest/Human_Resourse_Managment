@@ -1,10 +1,10 @@
 """Users model"""
 
-import jwt
-
 from datetime import datetime, timedelta
 
-from django.conf import settings 
+import jwt
+
+from django.conf import settings
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
@@ -15,6 +15,7 @@ class UserManager(BaseUserManager):
     """UserManager inherited BaseUserManager"""
     use_in_migrations = True
     def create_user(self, username, email, password=None):
+        """Create user"""
         if username is None:
             raise TypeError('Users must have a username.')
 
@@ -28,6 +29,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password):
+        """Create superuser"""
         if password is None:
             raise TypeError('Superusers must have a password.')
 
@@ -56,22 +58,25 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def token(self):
+        """Token"""
         return self._generate_jwt_token()
 
     def get_full_name(self):
+        """Full name"""
         return self.username
 
     def get_short_name(self):
+        """Short name"""
         return self.username
 
     def _generate_jwt_token(self):
-        dt = datetime.now() + timedelta(days=1)
+        date_t = datetime.now() + timedelta(days=1)
 
         token = jwt.encode({
             'id': self.pk,
-            'exp': int(dt.strftime('%s'))
+            'exp': int(date_t.strftime('%s'))
         }, settings.SECRET_KEY, algorithm='HS256')
         return token.decode('utf-8')
-    
+
     class Meta:
         swappable = 'AUTH_USER_MODEL'

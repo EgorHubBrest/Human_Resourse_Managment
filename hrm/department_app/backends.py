@@ -1,3 +1,4 @@
+"""Backends"""
 import jwt
 
 from django.conf import settings
@@ -13,7 +14,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
 
     def authenticate(self, request):
         """
-        The authenticate method is called every time, 
+        The authenticate method is called every time,
         regardless of whether the endpoint requires authentication.
         """
         request.user = None
@@ -23,7 +24,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
         if not auth_header:
             return None
 
-        if len(auth_header) == 1:
+        elif len(auth_header) == 1:
             return None
 
         elif len(auth_header) > 2:
@@ -44,15 +45,15 @@ class JWTAuthentication(authentication.BaseAuthentication):
         """
         try:
             payload = jwt.decode(token, settings.SECRET_KEY)
-        except Exception:
+        except Exception as auth_no_exist:
             msg = 'Authentication error. The token cannot be decoded.'
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed(msg) from auth_no_exist
 
         try:
             user = User.objects.get(pk=payload['id'])
-        except User.DoesNotExist:
+        except User.DoesNotExist as user_no_exist:
             msg = 'The user corresponding to this token was not found.'
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed(msg) from user_no_exist
 
         if not user.is_active:
             msg = 'This user is deactivated.'

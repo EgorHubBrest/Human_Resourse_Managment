@@ -1,3 +1,4 @@
+"""Serializer"""
 from rest_framework import serializers
 from department_app.models import employee_model, department_models
 from department_app.models.users_models import User
@@ -5,18 +6,23 @@ from django.contrib.auth import authenticate
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
+    """Department"""
     class Meta:
         model = department_models.Department
         fields = '__all__'
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    """EmployeeSerializer"""
     class Meta:
         model = employee_model.Employee
         fields = '__all__'
 
+#pylint: disable=W0223
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
+    """RegistrationSerializer"""
     password = serializers.CharField(
         max_length=128,
         min_length=8,
@@ -32,8 +38,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
+#pylint: disable=W0221
+
 
 class LoginSerializer(serializers.Serializer):
+    """LoginSerialize"""
     email = serializers.CharField(max_length=255)
     username = serializers.CharField(max_length=255, read_only=True)
     password = serializers.CharField(max_length=128, write_only=True)
