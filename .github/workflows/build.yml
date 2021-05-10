@@ -30,11 +30,20 @@ jobs:
         run:
           pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
           
-      - name: Install dependencies for Coveralls       
+#       - name: Install dependencies for Coveralls       
+#         run:
+#           pip install coveralls
+#       - name: Coveralls
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         run: coveralls --service=github
+      - name: npm install, make test-coverage
         run:
-          pip install coveralls
+          npm install
+          make test-coverage
+
       - name: Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls --service=github
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
   
