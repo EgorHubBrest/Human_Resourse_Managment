@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from django.test import Client
 from rest_framework.test import APITestCase
-from department_app.utils import key_token
+from department_app.utils import KEY_TOKEN
 from department_app.models.users_models import User
 import json
 
@@ -21,7 +21,7 @@ class UserTests(APITestCase):
         self.assertEqual(response_reg.status_code, status.HTTP_201_CREATED)
 
         response_content_reg = json.loads(response_reg.content.decode('utf-8'))
-        token_reg = response_content_reg['user'][key_token]
+        token_reg = response_content_reg['user'][KEY_TOKEN]
 
         url = reverse('department_app:user-login')
         data = {
