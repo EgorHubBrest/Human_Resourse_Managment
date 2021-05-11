@@ -8,4 +8,4 @@ STATUS_CHOICES = (
     (ACTIVE, "Active"),
 )
 
-key_token = 'token'
+KEY_TOKEN = 'token'
