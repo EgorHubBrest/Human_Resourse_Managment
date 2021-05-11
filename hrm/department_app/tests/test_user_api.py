@@ -20,7 +20,7 @@ class UserTests(APITestCase):
         self.assertEqual(response_reg.status_code, status.HTTP_201_CREATED)
 
         response_content_reg = json.loads(response_reg.content.decode('utf-8'))
-        token = response_content_reg['user']['token']
+        token_reg = response_content_reg['user']['token']
 
         url = reverse('department_app:user-login')
         data = {
@@ -33,7 +33,7 @@ class UserTests(APITestCase):
         self.assertEqual(response_login.status_code, status.HTTP_200_OK)
         url = reverse('department_app:user')
         response_user = self.client.get(
-            url, HTTP_AUTHORIZATION='Token {}'.format(token))
+            url, HTTP_AUTHORIZATION='Token {}'.format(token_reg))
         self.assertEqual(response_user.status_code, status.HTTP_200_OK)
         data = {
             'user': {
@@ -41,7 +41,7 @@ class UserTests(APITestCase):
             }
         }
         response_user_patch = self.client.patch(
-            url, data, HTTP_AUTHORIZATION='Token {}'.format(token))
+            url, data, HTTP_AUTHORIZATION='Token {}'.format(token_reg))
         response_content_patch = json.loads(
             response_user_patch.content.decode('utf-8'))['user']['email']
         self.assertEqual(response_user_patch.status_code, status.HTTP_200_OK)
