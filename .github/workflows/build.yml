@@ -26,24 +26,12 @@ jobs:
           pip install pylint-django
           pip install pylint
           pip install djangorestframework
+          pip install coveralls python-dateutil
       - name: Run pylint check
         run:
           pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
-          
-#       - name: Install dependencies for Coveralls       
-#         run:
-#           pip install coveralls
-#       - name: Coveralls
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         run: coveralls --service=github
-      - name: npm install, make test-coverage
-        run:
-          npm install
-          make test-coverage
-
       - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: coveralls --service=github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
