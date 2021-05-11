@@ -39,7 +39,7 @@ jobs:
           pip install coveralls python-dateutil
       - name: Run pylint check
         run:
-          pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
+          coverage run --source=hrm hrm/manage.py test department_app
       - name: Run tests
         run: hrm/manage.py test department_app.tests
       - name: Coveralls
