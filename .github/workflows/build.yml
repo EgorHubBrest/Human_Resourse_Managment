@@ -41,7 +41,7 @@ jobs:
         run:
           pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
       - name: Run tests
-        run: coverage run --source=hrm hrm/manage.py test department_app
+        run: hrm/manage.py test department_app.tests
       - name: Coveralls
         run: coveralls --service=github
         env:
