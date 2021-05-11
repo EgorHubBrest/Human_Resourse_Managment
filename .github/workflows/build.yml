@@ -8,6 +8,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: egor_django
+          POSTGRES_PASSWORD: qwerty
+          POSTGRES_DB: egor_database
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
@@ -26,15 +36,13 @@ jobs:
           pip install pylint-django
           pip install pylint
           pip install djangorestframework
+          pip install coveralls python-dateutil
       - name: Run pylint check
         run:
           pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
-          
-      - name: Install dependencies for Coveralls       
-        run:
-          pip install coveralls
+      - name: Run tests
+        run: coverage run --source=hrm hrm/manage.py test department_app
       - name: Coveralls
+        run: coveralls --service=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls --service=github
-  
