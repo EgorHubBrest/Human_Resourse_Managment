@@ -25,7 +25,7 @@ class UserTests(APITestCase):
         # print(User.objects.get(username='use42341r5').token)
         # print(User.objects.all())
         token_reg = User.objects.get(username='use42341r5').token
-        # print(token_reg)
+        print(token_reg)
 
         url = reverse('department_app:user-login')
         data = {

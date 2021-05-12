@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'id': self.pk,
             'exp': int(date_t.strftime('%s'))
         }, settings.SECRET_KEY, algorithm='HS256')
-        return token.encode().decode('utf-8')
+        return token.decode()
 
     class Meta:
         swappable = 'AUTH_USER_MODEL'
