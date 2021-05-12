@@ -20,9 +20,12 @@ class UserTests(APITestCase):
         response_reg = self.client.post(url, data, format='json')
         self.assertEqual(response_reg.status_code, status.HTTP_201_CREATED)
 
-        response_content_reg = json.loads(response_reg.content.decode('utf-8'))
-        print(response_content_reg)
-        token_reg = response_content_reg['user']['token']
+        # response_content_reg = json.loads(response_reg.content.decode('utf-8'))
+        # # print(response_content_reg)
+        # print(User.objects.get(username='use42341r5').token)
+        # print(User.objects.all())
+        token_reg = User.objects.get(username='use42341r5').token
+        # print(token_reg)
 
         url = reverse('department_app:user-login')
         data = {
