@@ -7,5 +7,3 @@ STATUS_CHOICES = (
     (INACTIVE, "Inactive"),
     (ACTIVE, "Active"),
 )
-
-KEY_TOKEN = 'token'
