@@ -6,6 +6,7 @@ from department_app.views.user_views import LoginAPI, RegisterAPI, UserAPI, Chan
 from knox import views as knox_views
 from rest_framework.routers import DefaultRouter
 
+
 app_name = 'department_app'
 
 router = DefaultRouter()
