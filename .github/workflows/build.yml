@@ -12,9 +12,9 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: egor_django
+          POSTGRES_USER: test_django_user
           POSTGRES_PASSWORD: qwerty
-          POSTGRES_DB: egor_database
+          POSTGRES_DB: test_django_database
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
