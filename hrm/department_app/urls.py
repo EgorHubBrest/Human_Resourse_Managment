@@ -2,10 +2,8 @@
 from django.urls import path, include
 from department_app.views.department_views import DepartmentViewSet
 from department_app.views.employee_views import EmployeetViewSet
-# from department_app.views.user_views import RegistrationAPIView, LoginAPIView, UserRetrieveUpdateAPIView
-from knox import views as knox_views
 from department_app.views.user_views import LoginAPI, RegisterAPI, UserAPI, ChangePasswordView
-from django.urls import path
+from knox import views as knox_views
 from rest_framework.routers import DefaultRouter
 
 app_name = 'department_app'
@@ -25,6 +23,6 @@ urlpatterns = [
     path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
     path('api/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
     path('api/user/', UserAPI.as_view(), name='user'),
-    path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
+    path('api/change-password/', ChangePasswordView.as_view(),
+         name='change-password'),
 ]
-
