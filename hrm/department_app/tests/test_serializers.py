@@ -1,8 +1,8 @@
 from rest_framework.test import APITestCase
-from department_app.serializers import DepartmentSerializer, EmployeeSerializer, RegistrationSerializer
+from department_app.serializers import DepartmentSerializer, EmployeeSerializer, RegisterSerializer, ChangePasswordSerializer
 from department_app.models.employee_model import Employee
 from department_app.models.department_models import Department
-from department_app.models.users_models import User
+from django.contrib.auth.models import User
 from djmoney.money import Money
 
 
@@ -57,21 +57,21 @@ class SerializerTests(APITestCase):
         self.assertEqual(expected_data, data)
 
     def test_serializer_user(self):
-        us_1 = User(email='pavel1@gmail.com', username='Pavel1_Volya')
-        us_2 = User(email='pavel2@gmail.com', username='Pavel2_Volya')
-        data = RegistrationSerializer([us_1, us_2], many=True).data
+        user_1 = User.objects.create(
+            username="testuser", email="testuser@gmail.com", password="4535434gdf2")
+        user_2 = User.objects.create(
+            username="testuser1", email="testuser1@gmail.com", password="4535434gdf2")
+        data = RegisterSerializer([user_1, user_2], many=True).data
         expected_data = [
             {
-                "email": "pavel1@gmail.com",
-                "username": "Pavel1_Volya",
+                "id": user_1.id,
+                "username": "testuser",
+                "email": "testuser@gmail.com"
             },
             {
-                "email": "pavel2@gmail.com",
-                "username": "Pavel2_Volya",
-            }
+                "id": user_2.id,
+                "username": "testuser1",
+                "email": "testuser1@gmail.com"
+            },
         ]
-        self.assertEqual(expected_data[0]['email'], data[0]['email'])
-        self.assertEqual(expected_data[0]['username'], data[0]['username'])
-
-        self.assertEqual(expected_data[1]['email'], data[1]['email'])
-        self.assertEqual(expected_data[1]['username'], data[1]['username'])
+        self.assertEqual(expected_data, data)

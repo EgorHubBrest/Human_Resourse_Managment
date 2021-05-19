@@ -1,7 +1,6 @@
 from rest_framework.test import APITestCase
 from department_app.models.employee_model import Employee
 from department_app.models.department_models import Department
-from department_app.models.users_models import User
 from djmoney.money import Money
 import json
 
@@ -67,33 +66,3 @@ class ModelsTests(APITestCase):
         self.assertEqual(expected_data[1]['name'], empl_2.name)
         self.assertEqual(expected_data[1]['date'], empl_2.date)
         self.assertEqual(expected_data[1]['email'], empl_2.email)
-
-    def test_model_user(self):
-        us_1 = User(email='pavel1@gmail.com',
-                    username='Pavel1_Volya', password='453t42871Gr')
-        us_2 = User(email='pavel2@gmail.com',
-                    username='Pavel2_Volya', password='45th3t42871Gr')
-        expected_data = [
-            {
-                "id": us_1.id,
-                "email": "pavel1@gmail.com",
-                "username": "Pavel1_Volya",
-                "password": "453t42871Gr",
-            },
-            {
-                "id": us_2.id,
-                "email": "pavel2@gmail.com",
-                "username": "Pavel2_Volya",
-                "password": "45th3t42871Gr",
-            }
-        ]
-
-        self.assertEqual(expected_data[0]['id'], us_1.id)
-        self.assertEqual(expected_data[0]['email'], us_1.email)
-        self.assertEqual(expected_data[0]['username'], us_1.username)
-        self.assertEqual(expected_data[0]['password'], us_1.password)
-
-        self.assertEqual(expected_data[1]['id'], us_2.id)
-        self.assertEqual(expected_data[1]['email'], us_2.email)
-        self.assertEqual(expected_data[1]['username'], us_2.username)
-        self.assertEqual(expected_data[1]['password'], us_2.password)

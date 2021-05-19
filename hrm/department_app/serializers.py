@@ -41,11 +41,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
-# User Serializer
-class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('id', 'username', 'email')
 
 # Change Password
 
