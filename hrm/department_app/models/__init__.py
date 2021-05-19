@@ -1,2 +1,2 @@
-"""For User"""
-from department_app.models.users_models import User
+# """For User"""
+# from department_app.models.user_model import User

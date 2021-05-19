@@ -1,8 +1,8 @@
 """Serializer"""
-from rest_framework import serializers
 from department_app.models import employee_model, department_models
-from department_app.models.users_models import User
-from django.contrib.auth import authenticate
+from rest_framework import generics, permissions
+from rest_framework import serializers
+from django.contrib.auth.models import User
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -21,81 +21,40 @@ class EmployeeSerializer(serializers.ModelSerializer):
 #pylint: disable=W0223
 
 
-class RegistrationSerializer(serializers.ModelSerializer):
-    """RegistrationSerializer"""
-    password = serializers.CharField(
-        max_length=128,
-        min_length=8,
-        write_only=True
-    )
 
-    token = serializers.CharField(max_length=255, read_only=True)
 
+# User Serializer
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'token']
+        fields = ('id', 'username', 'email')
+
+# Register Serializer
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
 
-#pylint: disable=W0221
+        return user
 
-
-class LoginSerializer(serializers.Serializer):
-    """LoginSerialize"""
-    email = serializers.CharField(max_length=255)
-    username = serializers.CharField(max_length=255, read_only=True)
-    password = serializers.CharField(max_length=128, write_only=True)
-    token = serializers.CharField(max_length=255, read_only=True)
-
-    def validate(self, data):
-        email = data.get('email', None)
-        password = data.get('password', None)
-        if email is None:
-            raise serializers.ValidationError(
-                'An email address is required to log in.'
-            )
-        if password is None:
-            raise serializers.ValidationError(
-                'A password is required to log in.'
-            )
-        user = authenticate(username=email, password=password)
-        if user is None:
-            raise serializers.ValidationError(
-                'A user with this email and password was not found.'
-            )
-        if not user.is_active:
-            raise serializers.ValidationError(
-                'This user has been deactivated.'
-            )
-        return {
-            'email': user.email,
-            'username': user.username,
-            'token': user.token
-        }
-
-
+# User Serializer
 class UserSerializer(serializers.ModelSerializer):
-    """ Performs serialization and deserialization of User objects. """
-    password = serializers.CharField(
-        max_length=128,
-        min_length=8,
-        write_only=True
-    )
+  class Meta:
+    model = User
+    fields = ('id', 'username', 'email')
 
-    class Meta:
-        model = User
-        fields = ('email', 'username', 'password', 'token',)
-        read_only_fields = ('token',)
+# Change Password
 
-    def update(self, instance, validated_data):
-        password = validated_data.pop('password', None)
 
-        for key, value in validated_data.items():
-            setattr(instance, key, value)
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
 
-        if password is not None:
-            instance.set_password(password)
-        instance.save()
-
-        return instance
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

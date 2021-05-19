@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djmoney',
     'rest_framework',
+    'djmoney',
+    'django_rest_passwordreset',
+    'knox',
     'department_app',
 
 ]
@@ -74,7 +76,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-AUTH_USER_MODEL = 'department_app.User'
+
 
 
 ROOT_URLCONF = 'hrm.urls'
@@ -105,8 +107,8 @@ WSGI_APPLICATION = 'hrm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'egor_database',
-        'USER': 'egor_django',
+        'NAME': 'test_django_database',
+        'USER': 'test_django_user',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -157,8 +159,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'department_app.backends.JWTAuthentication',
-    ),
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ],
 }
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
