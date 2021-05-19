@@ -29,11 +29,11 @@ def forward_func(apps, schema_editor):
     ])
 
     User.objects.bulk_create([
-        User(username="testuser1", email="testuser1@gmail.com",
-             password="45355434gdf2"),
-        User(username="testuser2", email="testuser2@gmail.com",
+        User(username="testuser123", email="testuser123@gmail.com",
+             password="45355434gdf1"),
+        User(username="testuser124", email="testuser124@gmail.com",
              password="45354р34gdf2"),
-        User(username="testuser3", email="testuser3@gmail.com",
+        User(username="testuser125", email="testuser125@gmail.com",
              password="4535в434gdf2"),
     ])
 
