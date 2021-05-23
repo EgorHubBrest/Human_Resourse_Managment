@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from djmoney.money import Money
+from django.contrib.auth.models import User
 
 
 def forward_func(apps, schema_editor):
@@ -27,6 +28,15 @@ def forward_func(apps, schema_editor):
                  salary=Money(2100, 'USD'), email='pavel@gmail.com', status='Active'),
     ])
 
+    User.objects.bulk_create([
+        User(username="testuser123", email="testuser123@gmail.com",
+             password="45355434gdf1"),
+        User(username="testuser124", email="testuser124@gmail.com",
+             password="45354р34gdf2"),
+        User(username="testuser125", email="testuser125@gmail.com",
+             password="4535в434gdf2"),
+    ])
+
 
 def backward_func(apps, schema_editor):
     Department = apps.get_model('department_app', 'Department')
@@ -34,6 +44,7 @@ def backward_func(apps, schema_editor):
 
     Employee.objects.all().delete()
     Department.objects.all().delete()
+    User.objects.all().delete()
 
 
 class Migration(migrations.Migration):

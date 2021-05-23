@@ -17,6 +17,10 @@ ignore=CVS,
       wsgi.py,
       admin.py,
       apps.py,
+      tests,
+      department_app.log,
+      backends.py,
+      renderers.py,
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
