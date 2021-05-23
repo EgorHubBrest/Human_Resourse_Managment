@@ -23,38 +23,33 @@ class EmployeeTests(APITestCase):
         self.assertEqual(Employee.objects.get(
             pk=response.json()['id']).email, 'Anna@gmail.com')
 
-    def test_get_department(self):
+    def test_post_employee_negative(self):
+        url = reverse('department_app:employees-list')
+        data = {
+            "name": "",
+            "date": "19692-162-261",
+            "email": "",
+            "department": 1000
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_get_employee(self):
         url = reverse('department_app:employees-list')
         response = self.client.get(url, format='json')
+        true_data = {'id': 1,
+                     'name': 'Maria Nankov',
+                     'date': '1986-11-01',
+                     'salary_currency': 'USD',
+                     'salary': '1500.00',
+                     'email': 'maria@gmail.com',
+                     'status': 'Active',
+                     'department': 1}
+        response_content = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_content[0], true_data)
 
-    def test_put_department(self):
-        dep_exe = Department.objects.get(name='Executive Office')
-        empl = Employee.objects.create(
-            name='Anna Paul', department=dep_exe, date='1992-12-21', email='Anna@gmail.com')
-        valid_empl = {
-            "name": "name is changed",
-            "email": "email is changed"
-        }
-        response = self.client.put(
-            reverse('department_app:employees-list', kwargs={'pk': empl.pk}),
-            data=json.dumps(valid_empl),
-            content_type='application/json',
-        )
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def test_destroy_department(self):
-        dep_exe = Department.objects.get(name='Executive Office')
-        empl = Employee.objects.create(
-            name='Anna Paul', department=dep_exe, date='1992-12-21', email='Anna@gmail.com')
-        response = self.client.put(
-            reverse('department_app:employees-list', kwargs={'pk': empl.pk}), format='json'
-        )
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def test_for_pk_department(self):
+    def test_put_employee(self):
         """Update department"""
         data = '{ "name": "Anna Paul","date": "1992-12-21","email": "Anna@gmail.com","department": 2}'
         dep_exe = Department.objects.get(name='Executive Office')
@@ -69,6 +64,24 @@ class EmployeeTests(APITestCase):
         self.assertEqual(Employee.objects.get(
             pk=empl.pk).email, 'Anna@gmail.com')
 
+    def test_put_employee_negative(self):
+        """Update department"""
+        data = '{ "name": "","date": "199422-124-2142","email": ","department": 1000}'
+        dep_exe = Department.objects.get(name='Executive Office')
+        empl = Employee.objects.create(
+            name='Anna Paul', department=dep_exe, date='1992-12-21', email='Anna@gmail.com')
+        url = reverse('department_app:employees-detail',
+                      args=(empl.id,))
+        response = self.client.put(
+            url, data=data, content_type="application/json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_destroy_employee(self):
         """Delete department"""
+        dep_exe = Department.objects.get(name='Executive Office')
+        empl = Employee.objects.create(
+            name='Anna Paul', department=dep_exe, date='1992-12-21', email='Anna@gmail.com')
+        url = reverse('department_app:employees-detail',
+                      args=(empl.id,))
         res_delete = self.client.delete(url)
         self.assertEqual(res_delete.status_code, status.HTTP_204_NO_CONTENT)

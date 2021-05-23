@@ -1,7 +1,8 @@
 [run]
 omit =
     hrm/manage.py
+    */tests/*
+    */migrations/*
     setup.py
-    *hrm/department_app/*
     *wsgi.py
     *asgi.py

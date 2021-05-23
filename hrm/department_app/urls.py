@@ -15,10 +15,6 @@ router.register('employee', EmployeetViewSet, basename='employees')
 
 urlpatterns = [
     path('viewset/', include(router.urls)),
-    path('viewset/<int:pk>/', include(router.urls)),
-    # path('user/', UserRetrieveUpdateAPIView.as_view(), name='user'),
-    # path('users/', RegistrationAPIView.as_view(), name='user-reg'),
-    # path('users/login/', LoginAPIView.as_view(), name='user-login'),
     path('api/register/', RegisterAPI.as_view(), name='register'),
     path('api/login/', LoginAPI.as_view(), name='login'),
     path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
