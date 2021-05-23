@@ -35,6 +35,7 @@ jobs:
           pip install -r requirements.txt
           pip install pylint-django
           pip install pylint
+          pip install coveralls python-dateutil
       - name: Run pylint check
         run:
           pylint --load-plugins=pylint_django --django-settings-module=hrm.settings hrm/*
