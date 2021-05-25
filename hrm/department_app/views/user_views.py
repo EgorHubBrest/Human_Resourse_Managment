@@ -4,15 +4,18 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework import status
 from django.contrib.auth import login
+from django.dispatch import receiver
+from django.urls import reverse
+from django.core.mail import send_mail
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
+from django_rest_passwordreset.signals import reset_password_token_created
 from department_app.serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
 from django.views.decorators.debug import sensitive_post_parameters
 
-from rest_framework.views import APIView
 
 # Register API
 
@@ -89,3 +92,24 @@ class ChangePasswordView(generics.UpdateAPIView):
             return Response(response)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+"""User model"""
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(reset_password_token, *args, **kwargs):
+    """Reset passwrod with lib"""
+    email_plaintext_message = "{}?token={}".format(
+        reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="Some website title"),
+        # message:
+        email_plaintext_message,
+        # from:
+        "noreply@somehost.local",
+        # to:
+        [reset_password_token.user.email]
+    )

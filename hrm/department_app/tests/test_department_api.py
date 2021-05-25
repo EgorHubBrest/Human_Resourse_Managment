@@ -2,6 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from department_app.models.department_models import Department
+from department_app.models.employee_model import Employee
 import json
 
 
@@ -62,3 +63,12 @@ class DepartmentTests(APITestCase):
                       args=(department.id,))
         res_delete = self.client.delete(url)
         self.assertEqual(res_delete.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_destroy_department_existing(self):
+        department = Department.objects.get(name='The Secretariat')
+        url = reverse('department_app:departments-detail',
+                      args=(department.id,))
+        res_delete = self.client.delete(url)
+        self.assertEqual(res_delete.status_code, status.HTTP_204_NO_CONTENT)
+        with self.assertRaises(Employee.DoesNotExist):
+            Employee.objects.get(name="Edward Bill")
